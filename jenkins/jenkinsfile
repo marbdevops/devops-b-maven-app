@@ -34,7 +34,7 @@ pipeline {
         stage('App-Code-Checkout-GitHUB') {
             steps {
 
-            	git branch: 'appBranch' , url: 'https://github.com/marbdevops/devops-b-maven-app.git'
+            	git branch: appBranch , url: 'https://github.com/marbdevops/devops-b-maven-app.git'
         
                 //echo 'Hello World'
                 //sh 'hostname'
@@ -51,15 +51,24 @@ pipeline {
 
 
     stage('Docker Build') {
-          steps {
+            steps {
+                withCredentials([string(credentialsId: 'DOCKER_TOKEN', variable: 'DOCKER_PASSWD')]) 
+                
+                    sh 'docker build . -t marbdevops/awsatch-devops2:test'
+                    sh 'docker login -u marbdevops -p ${DOCKER_PASSWD}'
+                    sh 'docker push marbdevops/awsatch-devops2:test'
+                }
 
-        	  	sh 'docker build . -t marbdevops/awsatch-devops:latest'
-        	  //	sh 'docker login -u username -p dock_token'
-        	  //	sh 'docker push marbdevops/awsatch-devops:latest'
-        	  	sh 'docker run -d marbdevops/awsatch-devops:latest'
-        	 
-            }
-       
+         }
     }
-}
-}
+
+    stage('Archive and clean workspace') {
+                steps {
+                    
+                    archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+                    cleanWs()
+                }
+
+            }
+        }
+    
