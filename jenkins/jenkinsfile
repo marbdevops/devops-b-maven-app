@@ -34,7 +34,7 @@ pipeline {
         stage('App-Code-Checkout-GitHUB') {
             steps {
 
-            	git branch: appBranch , url: 'https://github.com/pythonlifedevops/aws-b-maven-app.git'
+            	git branch: 'main' , url: 'https://github.com/marbdevops/devops-b-maven-app.git'
         
                 //echo 'Hello World'
                 //sh 'hostname'
@@ -53,10 +53,10 @@ pipeline {
     stage('Docker Build') {
           steps {
 
-        	  	sh 'docker build . -t pylifedevops/awstest:latest'
+        	  	sh 'docker build . -t marbdevops/awsatch-devops:latest'
         	  //	sh 'docker login -u username -p dock_token'
-        	  //	sh 'docker push pylifedevops/awstest:latest'
-        	  	sh 'docker run -d pylifedevops/awstest:latest'
+        	  //	sh 'docker push marbdevops/awsatch-devops:latest'
+        	  	sh 'docker run -d marbdevops/awsatch-devops:latest'
         	 
             }
        
