@@ -54,9 +54,9 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'DOCKER_TOKEN', variable: 'DOCKER_PASSWD')]) 
                 
-                    sh 'docker build . -t marbdevops/awsatch12:test'
+                    sh 'docker build . -t marbdevops/awsatch-test12:test'
                     sh 'docker login -u pylifedevops -p ${DOCKER_PASSWD}'
-                    sh 'docker push marbdevops/awsatch12:test'
+                    sh 'docker push marbdevops/awsatch-test12:test'
                 }
 
          }
