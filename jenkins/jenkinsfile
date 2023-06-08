@@ -56,7 +56,7 @@ pipeline {
                 {
                 
                     sh 'docker build . -t marbdevops/awsatch-test12:test'
-                    sh 'docker login -u pylifedevops -p ${DOCKER_PASSWD}'
+                    sh 'docker login -u marbdevops -p ${DOCKER_PASSWD}'
                     sh 'docker push marbdevops/awsatch-test12:test'
                 }
 
