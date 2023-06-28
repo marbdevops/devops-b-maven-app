@@ -67,7 +67,7 @@ pipeline {
     stage ('K8SManiFest-Checkout') {
                 steps {
 
-                    git 'https://github.com/marbdevops/devops-cicd.git'
+                    git 'https://github.com/marbdevops/devops-k8s-cicd.git'
 
                 }
             }
