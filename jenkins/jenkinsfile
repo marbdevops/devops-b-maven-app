@@ -77,7 +77,7 @@ pipeline {
 
                 steps {
 
-                    dir('jenkins')
+                    dir('manifests')
                      {
 
                     sh 'ls -l'
