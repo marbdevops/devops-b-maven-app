@@ -8,8 +8,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "Marbs devops engineer
-          javas application";
+        return "Marbs javas application";
     }
 
 }
